@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_framework_swagger',
+    'form',
 ]
 
 MIDDLEWARE = [
@@ -72,13 +76,26 @@ WSGI_APPLICATION = 'inputsapi.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+}"""
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'APIDJANGO',
+        'USER': 'root',
+        'PASSWORD': 'Franco2!2!',
+        'HOST': 'localhost',
+        'PORT': ''
+    }
 }
+
 
 
 # Password validation
@@ -118,3 +135,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+REST_FRAMEWORK = { 
+
+    'DEFAULT_AUTHENTICATION_CLASSES': ( 
+        'rest_framework.authentication.TokenAuthentication', 
+        'rest_framework.authentication.SessionAuthentication', 
+        'rest_framework.authentication.BasicAuthentication',
+        ),
+
+    'DEFAULT_PERMISSION_CLASSES': ( 
+       # 'rest_framework.permissions.IsAuthenticated', 
+        ),
+    
+
+    }

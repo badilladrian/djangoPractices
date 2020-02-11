@@ -14,8 +14,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from rest_framework_swagger.views import get_swagger_view
+from rest_framework.documentation import include_docs_urls 
+from rest_framework.schemas import *
+#Estoy importando todos los schemas y aun me sale el error
+#'AutoSchema' object has no attribute 'get_link'
+
+schema_view = get_swagger_view(title='Forms API')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('form.urls')),
+    path('swagger-docs/', schema_view),
+    path('docs/', include_docs_urls(title='Forms API')),
 ]
+
+
